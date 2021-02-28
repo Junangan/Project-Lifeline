@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Sign Up</title>
+		<link rel="stylesheet" href="CSS/style.css">
+	    <script type="text/javascript" src="JavaScript/script.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	</head>
+	<body class="p-3 mb-2 body text-black">
+		<div class="header">
+			<h1>Sign Up</h1>
+		</div>
+		<div class="form">
+			<form id="myform" action="PHP/SaveVolunteer.php" method="POST" onsubmit="return SignUp_Validate()">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="Volunteername">Username:</label>
+						<input class="form-control" type="text" name="name" id="Volunteername" placeholder="Enter your username" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="Volunteerpassword">Password:</label>
+						<input class="form-control" type="password" name="password" id="Volunteerpassword" placeholder="Enter your password" required>
+						<div class="custom-control">
+						   	<input type="checkbox" class="form-check-input" onclick="SignUpshowPassword()">
+							<label class="form-check-label" for="showPassword">Show Password</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="VolunteerFullname">Full name:</label>
+						<input class="form-control" type="text" name="realName" id="VolunteerFullname" placeholder="Enter your real name" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label for="VolunteerPhoneNumber">Phone:</label>
+						<input class="form-control" type="text" name="phoneNumber" id="VolunteerPhoneNumber" placeholder="Enter your phone number" required>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-xl-6">
+						<label for="VolunteerCredential">Credentials (optional):</label>
+						<div class="input-group-prepend">
+							<select class="form-control col-3" name="CredentialType" id="CredentialType">
+								<option value="">Type</option>
+								<option value="Passport">Passport</option>
+								<option value="IC">IC</option>
+							</select>
+							<input class="form-control col-9" type="text" name="Credential" id="VolunteerCredential" placeholder="Enter number">
+						</div>
+					</div>
+					<div class="form-group col-xl-4">
+						<label for="VolunteerBirthday">Date of birth (optional):</label>
+						<input class="form-control" type="date" name="Birthday" id="VolunteerBirthday">
+					</div>
+					<div class="form-group col-xl-2">
+						<label for="Volunteergender">Gender (optional):</label>
+						<select class="form-control" name="Gender" id="Volunteergender">
+							<option value="">Select Gender</option>
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+						</select>
+					</div>
+				</div>
+				<div class="button">
+					<input class="btn btn-block" type="submit" id="signUp" name="submit" value="Submit">
+					<small>Have account?<a class="link" href="Login.html">Go to login</a></small>
+				</div>
+			</form>
+		</div>
+		<div class="back row">
+			<input type="button" class="btn btn-block col-4 offset-md-4" name="back" value="Back" onclick="document.location='MainPage.html'">
+		</div>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	</body>
+</html>

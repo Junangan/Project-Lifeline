@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Login</title>
+		<link rel="stylesheet" href="CSS/style.css">
+		<script type="text/javascript" src="JavaScript/script.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link  rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	</head>
+	<body class="p-3 mb-2 text-black body">
+		<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="col-8">
+				<div class="header">
+					<h1>Login</h1>
+				</div>
+				<div id="loginForm">
+					<form id="loginform" action="PHP/Login.php" method="POST" onsubmit="return Login_Validate()">
+						<div class="form-group">
+							<label for="LoginName">Username:</label>
+							<input class="form-control" type="text" name="name" id="LoginName" placeholder="Enter your username" required>
+						</div>
+						<div class="form-group">
+							<label for="LoginPassword">Password:</label>
+							<input class="form-control" type="password" name="password"id="LoginPassword" placeholder="Enter your password" required>
+							<div class="custom-control">
+								<input type="checkbox" class="form-check-input" onclick="LoginshowPassword()">
+								<label class="form-check-label" for="showPassword">Show Password</label>
+							</div>
+						</div>
+						<div class="button">
+							<input class="btn btn-block" type="submit" id="login" name="submit" value="Login">
+							<small>No any account?<a class="link" href="SignUp.html">Sign Up with volunteer</a></small>
+						</div>
+					</form>
+				</div>
+				<div class="back row">
+					<input type="button" class="btn btn-block col-4 offset-md-4" name="back" value="Back" onclick="document.location='MainPage.html'">
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</html>
