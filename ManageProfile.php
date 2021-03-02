@@ -10,10 +10,12 @@
 	</head>
 	<body class="text-black">
 		<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
-			<a class="navTitle" href="#">CRS</a>
+			<a class="navTitle" href="VolunteerPage.html">CRS</a>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
-					<li class="nav-item nav"><a class="navItem1" href="#">Change Profile</a></li>
+					<li class="nav-item nav"><a class="navItem1" href="#">Record CRS staff</a></li>
+					<li class="nav-item nav"><a class="navItem2" href="#">Apply Trip</a></li>
+					<li class="nav-item nav"><a class="navItem2" href="#">View Application</a></li>
 					<li class="nav-item nav"><a class="navItem2" href="MainPage.html">Log Out</a></li>
 				</ul>
 			</div>
