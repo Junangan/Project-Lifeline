@@ -31,6 +31,22 @@ $result = $conn->query($GetUserQuery);
 if(!$result){
 	$CreateUserTableQuery = "CREATE TABLE User(username VARCHAR(255) PRIMARY KEY,password VARCHAR(255) NOT NULL,name VARCHAR(255) NOT NULL,phone integer(11) NOT NULL)";
 	$conn->query($CreateUserTableQuery);
+	$GetStaffQuery = "SELECT * from Staff";
+	$result = $conn->query($GetStaffQuery);
+	if(!$result){
+		$CreateStaffTableQuery = "CREATE TABLE Staff(StaffID integer(10) AUTO_INCREMENT PRIMARY KEY,position VARCHAR(255) NOT NULL,joinDate DATE NOT NULL,username VARCHAR(255) NOT NULL,foreign key(username) references User(username))";
+		$conn->query($CreateStaffTableQuery);
+	}
+}
+
+$findFirstManager = "SELECT * from Staff where username='Manager1'";
+$result = $conn->query($findFirstManager);
+if($result->num_rows <= 0){
+	$date = date("Y-m-d");
+	$AddUserQuery = "INSERT INTO User values('Manager1','Manager1','Manager1','1234567890')";
+	$conn->query($AddUserQuery);
+	$AddManagerQuery = "INSERT INTO Staff values(NULL,'Manager','$date','Manager1')";
+	$conn->query($AddManagerQuery);
 }
 
 //to check the username is dublicate or no, if no then will add the user
@@ -38,20 +54,23 @@ $GetLoginUserQuery = "SELECT * from User where username='$UserName' AND password
 $result = $conn->query($GetLoginUserQuery);
 if($result->num_rows <= 0){
 	echo "<script>
-			alert('The User is not exist , please enter again');
-			window.location.href='../Login.html';
-			</script>";
+		alert('The User is not exist , please enter again');
+		window.location.href='../Login.html';
+		</script>";
 }
 else{
 	$findVolunteer = $conn->query("SELECT * from Volunteer where username='$UserName'");
 	$findStaff = $conn->query("SELECT * from Staff where username='$UserName'");
-	if(!$findVolunteer && !$findStaff){
-		echo "<script>
+	if($findVolunteer->num_rows <= 0){
+		$findManager = $conn->query("SELECT * from Staff where username='$UserName' AND position='Manager'");
+		if($findManager->num_rows <= 0){
+			//go to CRS staff page
+		}
+		else{
+			echo "<script>
 			window.location.href='../CRSManagerPage.html';
 			</script>";
-	}
-	else if(!$findVolunteer){
-
+		}
 	}
 	else{
 		$_SESSION['Volunteer'] = $UserName;
