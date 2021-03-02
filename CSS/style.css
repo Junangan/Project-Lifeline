@@ -6,6 +6,11 @@
   min-height    : 900px;
 }
 
+#Managerbody , #Volunteerbody{
+  background-color: #B8FF99;
+  background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
+}
+
 .header{
   margin: auto;
   padding-bottom: 20px;
@@ -60,8 +65,6 @@
 
 .button{
   padding-top: 10%;
-  margin-left: 10%;
-  margin-right: 10%;
 }
 
 .button .btn{
@@ -132,4 +135,27 @@
   padding-left: 0.75em;
   padding-right: 0.75em;
   border: 2px groove;
+}
+
+.text{
+  font-size: 48px;
+  width: 100%;
+  font-weight: 100;
+}
+
+.link{
+  margin-top: 10%;
+}
+
+.link .btn{
+  border-radius: 0px;
+  border: 1px solid black;
+  width: 100%;
+  padding: 30px 0;
+  height: 100px;
+  font-size: 26px;
+}
+
+#managerMain,#volunteerMain{
+  margin-top: 5%;
 }
