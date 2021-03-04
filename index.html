@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="CSS/style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<style>
+		.vertical-space {height: 25px;}
+		.button-rounded {border-radius: 5px;}
+		#tripDisplay {
+			width: 100%;
+			height: 700px;
+		} /*estimation on width size*/
+	</style>
+	<title>Crisis Relief Services Information System</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand bg-light primary">
+		<a class="navbar-brand px-3" href="index.html">CRSIS</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
+
+  		<div class="collapse navbar-collapse justify-content-end px-3" id="navbarNavDropdown">
+  			<ul class="navbar-nav">
+  				<li class="nav-item">
+  					<a class="nav-link" href="#">About</a>
+  				</li>
+  				<!-- TEMP NAV DIRECTORY -->
+  				<li class="nav-item">
+  					<a class="nav-link" href="Volunteer/applytrip.html">Volunteer</a>
+  				</li>
+  				<li class="nav-item">
+  					<a class="nav-link" href="Staff/organizetrip.html">Staff</a>
+  				</li>
+  				<li class="nav-item">
+  					<a class="nav-link" href="Manager/">Manager</a>
+  				</li>
+  				<!-- TEMP NAV DIRECTORY END -->
+  				<li class="nav-item dropdown">
+  					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+  					<div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownLogin" id="dropdownLogin">
+						<input class="form-control dropdown-item black-50" type="" name="" placeholder="Username">
+						<input class="form-control dropdown-item black-50" type="" name="" placeholder="Password">
+  						<a class="dropdown-item" href="#" for="dropdownLogin" type="submit" method="POST">Login</a>
+  					</div>
+  				</li>
+  				<li class="nav-item">
+  					<a class="nav-link" href="signup.html">Sign Up</a>
+  				</li>
+  			</ul>
+  		</div>
+	</nav>
+	<div class="vertical-space"></div>
+
+	<div class="container">
+		<div class="row g-3">
+			<div class="col-md-5">
+				<div>
+					<h2>About Us</h2>
+					<div class="vertical-space"></div>
+					<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+					proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+				</div>
+				<div class="vertical-space"></div>
+				<div>
+					<h2>Our Services</h2>
+					<div class="vertical-space"></div>
+					<h4>Rescue & Relief</h4>
+					<p>Dispatch of organized group to victims of a disastrous event.</p>
+					<h4>Human Resource Management</h4>
+					<p>Gather and distribute skilled volunteers baesd on demand of a specific crisis event.</p>
+					<h4>Volunteer Support</h4>
+					<p>Contact for further information and guide in applying trips.</p>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+			<div class="col-md-5">
+				<div class="bg-success" id="tripDisplay"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

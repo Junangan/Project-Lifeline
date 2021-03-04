@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<style>
+		.vertical-space {height: 25px;}
+		.button-rounded {border-radius: 5px;}
+	</style>
+	<title>Organize Trip</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand bg-light primary">
+		<a class="navbar-brand px-3" href="../index.html">CRSIS</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
+
+  		<div class="collapse navbar-collapse justify-content-end px-3" id="navbarNavDropdown">
+  			<ul class="navbar-nav">
+  				<li class="nav-item">
+  					<a class="nav-link" href="#">About</a>
+  				</li>
+  				<!-- TEMP NAV DIRECTORY -->
+  				<li class="nav-item">
+  					<a class="nav-link" href="../Volunteer/applytrip.html">Volunteer</a>
+  				</li>
+  				<li class="nav-item">
+  					<a class="nav-link" href="manageapplications.html">Staff</a>
+  				</li>
+  				<li class="nav-item">
+  					<a class="nav-link" href="../Manager/">Manager</a>
+  				</li>
+  				<!-- TEMP NAV DIRECTORY END -->
+  				<li class="nav-item dropdown">
+  					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
+  					<div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownLogin" id="dropdownLogin">
+						<input class="form-control dropdown-item black-50" type="" name="" placeholder="Username">
+						<input class="form-control dropdown-item black-50" type="" name="" placeholder="Password">
+  						<a class="dropdown-item" href="#" for="dropdownLogin" type="submit" method="POST">Login</a>
+  					</div>
+  				</li>
+  				<li class="nav-item">
+  					<a class="nav-link" href="../signup.html">Sign Up</a>
+  				</li>
+  			</ul>
+  		</div>
+	</nav>
+	<h1 class="container text-center mb-3 py-4">Organize Trip</h1>
+	<div class="vertical-space"></div>
+
+	<div class="container mb-3">
+		<form class="row g-3">
+			<div class="col-md-5">
+				<div class="mb-3">
+					<label class="form-label" for="destinationTrip">Destination</label>
+					<input class="form-control" type="text" name="destinationTrip" id="destinationTrip" placeholder="Enter trip duration">
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="description">Description</label>
+					<textarea class="form-control" name="description" id="description" placeholder="Enter trip description"></textarea>
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="requirements">Document Requirements</label>
+					<textarea class="form-control" name="requirements" id="requirements" placeholder="Enter travel documents required for the trip"></textarea>
+				</div>
+				
+			</div>
+
+			<div class="col-md-2"></div>
+
+			<div class="col-md-5">
+				<label class="form-label" for="tripDate">Select Trip Date</label>
+				<div class="input-group mb-3">
+						<label class="control-label input-group-text" for="tripDatePicker">Select a date</label>
+						<input type="text" class="form-control" id="tripDatePicker" name="tripDatePicker" placeholder="DD/MM/YYYY" />
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="tripDuration">Trip Duration(Days)</label>
+					<input type="number" class="form-control" name="tripDuration" min="1" placeholder="Enter minimum trip duration (1 day)">
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="numVolunteer">Num of Volunteers</label>
+					<input type="number" class="form-control" name="numVolunteer" min="1" placeholder="Enter number of volunteer required (min 1 people)">
+				</div>
+				<div class="mb-3">
+					<label class="form-label" for="crisiTripSelect">Crisis Type</label>
+					<select class="form-select" id="crisiTripSelect">
+						<option selected>Select</option>
+						<option value="1">FLOOD</option>
+						<option value="2">EARTHQUAKE</option>
+						<option value="3">WILDFIRE</option>
+					</select>
+				</div>
+			</div>
+			<div class="vertical-space"></div>
+			<div class="container col-12 text-center">
+				<button class="p-2 mx-md-4 button-rounded btn-primary">Submit Form</button>
+				<button class="p-2 mx-md-4 button-rounded btn-danger">Reset Form</button>
+			</div>
+		</form>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+	<script>
+		$(document).ready(function(){
+	      var date_input=$('input[name="tripDatePicker"]'); //our date input has the name "tripDatePicker"
+	      var container= $('input').length<0 ? $('input.tripDatePicker').parent() : "body";
+	      var options={
+	        format: 'dd/mm/yyyy',
+	        container: container,
+	        orientation: "top right",
+	        todayHighlight: true,
+	        autoclose: true,
+	      };
+      	date_input.datepicker(options);
+   		 })
+	</script>	
+</body>
+</html>
