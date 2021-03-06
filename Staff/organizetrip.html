@@ -2,15 +2,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="../CSS/style.css">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-	<style>
-		.vertical-space {height: 25px;}
-		.button-rounded {border-radius: 5px;}
-	</style>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<title>Organize Trip</title>
 </head>
-<body>
+<body id="OrganizeTripBody">
 	<nav class="navbar navbar-expand bg-light primary">
 		<a class="navbar-brand px-3" href="../index.html">CRSIS</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +43,16 @@
   				</li>
   			</ul>
   		</div>
+	</nav>
+	<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
+		<a class="navTitle" href="#">CRS</a>
+		<div class="collapse  navbar-collapse" id="myNavbar">
+			<ul class="navbar-nav  w-100 justify-content-end">
+				<li class="nav-item nav"><a class="navItem1" href="#">Organize Trip</a></li>
+				<li class="nav-item nav"><a class="navItem2" href="manageapplications.html">Manage Application</a></li>
+				<li class="nav-item nav"><a class="navItem2" href="index.html">Log Out</a></li>
+			</ul>
+		</div>
 	</nav>
 	<h1 class="container text-center mb-3 py-4">Organize Trip</h1>
 	<div class="vertical-space"></div>
@@ -86,7 +93,7 @@
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="crisiTripSelect">Crisis Type</label>
-					<select class="form-select" id="crisiTripSelect">
+					<select class="form-control" id="crisiTripSelect">
 						<option selected>Select</option>
 						<option value="1">FLOOD</option>
 						<option value="2">EARTHQUAKE</option>
@@ -94,8 +101,7 @@
 					</select>
 				</div>
 			</div>
-			<div class="vertical-space"></div>
-			<div class="container col-12 text-center">
+			<div class="submitBar container col-12 text-center">
 				<button class="p-2 mx-md-4 button-rounded btn-primary">Submit Form</button>
 				<button class="p-2 mx-md-4 button-rounded btn-danger">Reset Form</button>
 			</div>
