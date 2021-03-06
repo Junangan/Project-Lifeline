@@ -13,10 +13,10 @@
 			<a class="navTitle" href="VolunteerPage.html">CRS</a>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
-					<li class="nav-item nav"><a class="navItem1" href="#">Record CRS staff</a></li>
+					<li class="nav-item nav"><a class="navItem1" href="#">Manage Profile</a></li>
 					<li class="nav-item nav"><a class="navItem2" href="#">Apply Trip</a></li>
 					<li class="nav-item nav"><a class="navItem2" href="#">View Application</a></li>
-					<li class="nav-item nav"><a class="navItem2" href="MainPage.html">Log Out</a></li>
+					<li class="nav-item nav"><a class="navItem2" href="index.html">Log Out</a></li>
 				</ul>
 			</div>
 		</nav>
