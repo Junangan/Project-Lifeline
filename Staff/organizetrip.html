@@ -9,20 +9,19 @@
 </head>
 <body id="OrganizeTripBody">
 	<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
-		<a class="navTitle" href="../CRSStaffPage.html">CRS</a>
-		<div class="collapse  navbar-collapse" id="myNavbar">
-			<ul class="navbar-nav  w-100 justify-content-end">
-				<li class="nav-item nav"><a class="navItem1" href="#">Organize Trip</a></li>
-				<li class="nav-item nav"><a class="navItem2" href="manageapplications.html">Manage Application</a></li>
-				<li class="nav-item nav"><a class="navItem2" href="../index.html">Log Out</a></li>
-			</ul>
-		</div>
-	</nav>
+			<a class="navTitle" href="../CRSStaffPage.html">CRS</a>
+			<div class="collapse  navbar-collapse" id="myNavbar">
+				<ul class="navbar-nav  w-100 justify-content-end">
+					<li class="nav-item nav"><a class="navItem1" href="#">Organize Trip</a></li>
+					<li class="nav-item nav"><a class="navItem2" href="manageapplications.html">Manage Application</a></li>
+					<li class="nav-item nav"><a class="navItem2" href="../index.html">Log Out</a></li>
+				</ul>
+			</div>
+		</nav>
 	<h1 class="container text-center mb-3 py-4">Organize Trip</h1>
 	<div class="vertical-space"></div>
-
 	<div class="container mb-3">
-		<form class="row g-3">
+		<form class="row g-3" action="../PHP/AddTrip.php" method="POST">
 			<div class="col-md-5">
 				<div class="mb-3">
 					<label class="form-label" for="destinationTrip">Destination</label>
@@ -38,9 +37,7 @@
 				</div>
 				
 			</div>
-
 			<div class="col-md-2"></div>
-
 			<div class="col-md-5">
 				<label class="form-label" for="tripDate">Select Trip Date</label>
 				<div class="input-group mb-3">
@@ -57,11 +54,11 @@
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="crisiTripSelect">Crisis Type</label>
-					<select class="form-control" id="crisiTripSelect">
+					<select class="form-control" name="TripType" id="crisiTripSelect">
 						<option selected>Select</option>
-						<option value="1">FLOOD</option>
-						<option value="2">EARTHQUAKE</option>
-						<option value="3">WILDFIRE</option>
+						<option value="Flood">FLOOD</option>
+						<option value="EarthQuake">EARTHQUAKE</option>
+						<option value="WildFire">WILDFIRE</option>
 					</select>
 				</div>
 			</div>
@@ -71,7 +68,6 @@
 			</div>
 		</form>
 	</div>
-
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
