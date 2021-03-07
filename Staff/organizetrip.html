@@ -10,11 +10,14 @@
 <body id="OrganizeTripBody">
 	<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
 			<a class="navTitle" href="../CRSStaffPage.html">CRS</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 			<div class="collapse  navbar-collapse" id="myNavbar">
 				<ul class="navbar-nav  w-100 justify-content-end">
-					<li class="nav-item nav"><a class="navItem1" href="#">Organize Trip</a></li>
-					<li class="nav-item nav"><a class="navItem2" href="manageapplications.html">Manage Application</a></li>
-					<li class="nav-item nav"><a class="navItem2" href="../index.php">Log Out</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Organize Trip</a></li>
+					<li class="nav-item"><a class="nav-link" href="manageapplications.html">Manage Application</a></li>
+					<li class="nav-item"><a class="nav-link" href="../index.php">Log Out</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -25,15 +28,15 @@
 			<div class="col-md-5">
 				<div class="mb-3">
 					<label class="form-label" for="destinationTrip">Destination</label>
-					<input class="form-control" type="text" name="destinationTrip" id="destinationTrip" placeholder="Enter trip duration">
+					<input class="form-control" type="text" name="destinationTrip" id="destinationTrip" placeholder="Enter trip duration" required>
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="description">Description</label>
-					<textarea class="form-control" name="description" id="description" placeholder="Enter trip description"></textarea>
+					<textarea class="form-control" name="description" id="description" placeholder="Enter trip description" required></textarea>
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="requirements">Document Requirements</label>
-					<textarea class="form-control" name="requirements" id="requirements" placeholder="Enter travel documents required for the trip"></textarea>
+					<textarea class="form-control" name="requirements" id="requirements" placeholder="Enter travel documents required for the trip" required></textarea>
 				</div>
 				
 			</div>
@@ -42,20 +45,20 @@
 				<label class="form-label" for="tripDate">Select Trip Date</label>
 				<div class="input-group mb-3">
 						<label class="control-label input-group-text" for="tripDatePicker">Select a date</label>
-						<input type="text" class="form-control" id="tripDatePicker" name="tripDatePicker" placeholder="DD/MM/YYYY" />
+						<input type="text" class="form-control" id="tripDatePicker" name="tripDatePicker" placeholder="DD/MM/YYYY" required/>
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="tripDuration">Trip Duration(Days)</label>
-					<input type="number" class="form-control" name="tripDuration" min="1" placeholder="Enter minimum trip duration (1 day)">
+					<input type="number" class="form-control" name="tripDuration" min="1" placeholder="Enter minimum trip duration (1 day)" required>
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="numVolunteer">Num of Volunteers</label>
-					<input type="number" class="form-control" name="numVolunteer" min="1" placeholder="Enter number of volunteer required (min 1 people)">
+					<input type="number" class="form-control" name="numVolunteer" min="1" placeholder="Enter number of volunteer required (min 1 people)" required>
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="crisiTripSelect">Crisis Type</label>
-					<select class="form-control" name="TripType" id="crisiTripSelect">
-						<option selected>Select</option>
+					<select class="form-control" name="TripType" id="crisiTripSelect" required>
+						<option value="">Select</option>
 						<option value="Flood">FLOOD</option>
 						<option value="EarthQuake">EARTHQUAKE</option>
 						<option value="WildFire">WILDFIRE</option>

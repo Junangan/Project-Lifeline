@@ -10,10 +10,13 @@
 <body >
 	<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top" style="border-bottom: 1px solid black;">
 		<a class="navTitle" href="#">CRS</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		<div class="collapse  navbar-collapse" id="myNavbar">
 			<ul class="navbar-nav  w-100 justify-content-end">
-				<li class="nav-item nav"><a class="navItem1" href="Login.html">Login</a></li>
-				<li class="nav-item nav"><a class="navItem2" href="SignUp.html">Sign Up</a></li>
+				<li class="nav-item nav"><a class="nav-link" href="Login.html">Login</a></li>
+				<li class="nav-item nav"><a class="nav-link" href="SignUp.html">Sign Up</a></li>
 			</ul>
 		</div>
 	</nav>
