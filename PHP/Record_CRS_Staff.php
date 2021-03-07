@@ -36,7 +36,7 @@ else{
 	$AddStaffQuery = "INSERT INTO Staff values(NULL,'$Position','$JoinDate','$UserName')";
 	$conn->query($AddStaffQuery);
 	echo "<script>
-		alert('Record Tester Successfully');
+		alert('Record Staff Successfully');
 		window.location.href='../Record_CRS_Staff.html';
 		</script>";
 }
