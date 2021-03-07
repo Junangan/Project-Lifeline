@@ -1,0 +1,154 @@
+.body{
+  background-color: #B8FF99;
+  background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
+  display       : grid;
+  align-content: center;
+  min-height    : 900px;
+}
+
+.vertical-space {height: 25px;}
+
+.button-rounded {border-radius: 5px;}
+
+.submitBar{margin-top: 25px;}
+
+#tripDisplay {
+      width: 100%;
+      height: 700px;
+}
+
+#Managerbody , #Volunteerbody,  #OrganizeTripBody{
+  background-color: #B8FF99;
+  background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
+}
+
+
+.header{
+  margin: auto;
+  padding-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 36px;
+}
+
+#loginForm{
+  padding-top: 10%;
+  padding-bottom: 10%;
+  padding-left: 15%;
+  padding-right: 15%;
+  background-color: #C2F9F6;
+  box-shadow: 0px 0px 50px #8EF6F0;
+}
+
+.form{
+  margin-left: 15%;
+  margin-right: 15%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: #C2F9F6;
+  box-shadow: 0px 0px 50px #8EF6F0;
+}
+
+#manageProfileForm{
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: #C2F9F6;
+  box-shadow: 0px 0px 50px #8EF6F0;
+}
+
+.form label, #loginForm label,#manageProfileForm label{
+  font-size: 20px;
+  margin: 0px;
+}
+
+.form select,#manageProfileForm select{
+  font-size: 20px;
+}
+
+.form input, #loginForm input,#manageProfileForm input{
+  font-size: 20px;
+  padding-left: 3%;
+}
+
+.button{
+  padding-top: 10%;
+}
+
+.button .btn{
+  border: 3px solid #666666;
+  border-radius: 0px;
+  font-family: "Open Sans";
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.button .link{
+  text-decoration: underline;
+  padding-left: 10px;
+}
+
+.back{
+  padding-top: 50px;
+}
+
+.back .btn{
+  border: 3px solid #666666;
+  border-radius: 0px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.navTitle {
+  padding-left: 30px;
+  font-weight: 700;
+  font-family: "Times New Roman";
+  font-size: 26px;
+  color: black;
+  text-decoration: none;
+}
+
+.navTitle:hover{
+  color: black;
+  text-decoration: none;
+}
+
+
+#DocumentUpload {
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-bottom: 20px;
+  padding-top: 0.35em;
+  padding-bottom: 0.625em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  border: 2px groove;
+}
+
+.text{
+  font-size: 48px;
+  width: 100%;
+  font-weight: 100;
+}
+
+.link{
+  margin-top: 10%;
+}
+
+.link .btn{
+  border-radius: 0px;
+  border: 1px solid black;
+  width: 100%;
+  padding: 30px 0;
+  height: 100px;
+  font-size: 26px;
+}
+
+#managerMain,#volunteerMain{
+  margin-top: 5%;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Record CRS Staff</title>
+		<link rel="stylesheet" href="CSS/style.css">
+	    <script type="text/javascript" src="JavaScript/script.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	</head>
+	<body class="text-black">
+		<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
+			<a class="navTitle" href="CRSManagerPage.html">CRS</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="navbar-nav mr-auto w-100 justify-content-end">
+					<li class="nav-item nav"><a class="nav-link" href="#">Record CRS staff</a></li>
+					<li class="nav-item nav"><a class="nav-link" href="index.php">Log Out</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="body">
+			<div class="container">
+				<div class="header">
+					<h1>Record new Staff</h1>
+				</div>
+				<div class="form">
+					<form action="PHP/Record_CRS_Staff.php" method="Post" onsubmit="return CRS_Staff_Validate()">
+						<div class="col">
+							<div class="form-row">
+								<div class="form-group col-lg-6 col-md-12">
+									<label for="StaffName">Username:</label>
+									<input class="form-control" type="text" name="username" id="StaffName" placeholder="Enter the staff username" required>
+								</div>
+								<div class="form-group col-lg-6 col-md-12">
+									<label for="StaffPassword">Password:</label>
+									<input class="form-control" type="password" name="password" id="StaffPassword" placeholder="Enter the staff password" required>
+								    <div class="custom-control">
+									   	<input type="checkbox" class="form-check-input" onclick="showTesterPassword()">
+										<label class="form-check-label" for="showPassword">Show Password</label>
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-lg-6 col-md-12">
+									<label for="StaffFullname">Full name:</label>
+									<input class="form-control" type="text" name="realName" id="StaffFullName" placeholder="Enter the staff real name" required>
+								</div>
+								<div class="form-group col-lg-6 col-md-12">
+									<label for="StaffPhoneNumber">Phone:</label>
+									<input class="form-control" type="text" name="phoneNumber" id="StaffPhoneNumber" placeholder="Enter the staff phone number" required>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-lg-6 col-md-12">
+									<label for="StaffPosition">Position:</label>
+									<select class="form-control" name="position" id="StaffPosition" required>
+										<option value="">Select Positon</option>
+										<option value="Manager">Manager</option>
+										<option value="Staff">Adminstration</option>
+									</select>
+								</div>
+								<div class="form-group col-lg-6 col-md-12">
+									<label for="StaffJoinDate">Date Joined:</label>
+									<input type="date" class="form-control" id="StaffJoinDate" name="joinDate" required/>
+								</div>
+							</div>
+							<div class="button row">
+								<input type="submit" class="btn offset-md-2 offset-lg-3 col-lg-6 col-md-8 col-12 btn-primary" name="submit" value="Record new Staff">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="back row">
+					<input type="button" class="btn btn-block col-md-4 col-12 offset-md-4" name="backToManager" value="Back To Manager Page" onclick="document.location='CRSManagerPage.html'">
+				</div>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	</body>
+</html>
