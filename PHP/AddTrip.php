@@ -52,7 +52,7 @@ $StaffID = $row['StaffID'];
 $AddTripQuery = "INSERT INTO Trip values(NULL,'$Description','$date','$Destination','$NumVolunteer','$Duration','$Type','$Requirements','$StaffID')";
 $conn->query($AddTripQuery);
 echo "<script>
-	alert('Record Successfully');
+	alert('Organize Trip Successfully');
 	window.location.href='../Staff/organizetrip.html';
 	</script>";
 
