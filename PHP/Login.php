@@ -51,9 +51,7 @@ $findFirstManager = "SELECT * from Staff where username='Manager1'";
 $result = $conn->query($findFirstManager);
 if($result->num_rows <= 0){
 	$date = date("Y-m-d");
-	$AddUserQuery = "INSERT INTO User values('Manager1','Manager1','Manager1','1234567890')";
-	$conn->query($AddUserQuery);
-	$AddManagerQuery = "INSERT INTO Staff values(NULL,'Manager','$date','Manager1')";
+	$AddManagerQuery = "INSERT INTO User values('Manager1','Manager1','Manager1','1234567890')";
 	$conn->query($AddManagerQuery);
 }
 
@@ -70,16 +68,15 @@ else{
 	$findVolunteer = $conn->query("SELECT * from Volunteer where username='$UserName'");
 	$findStaff = $conn->query("SELECT * from Staff where username='$UserName'");
 	if($findVolunteer->num_rows <= 0){
-		$findManager = $conn->query("SELECT * from Staff where username='$UserName' AND position='Manager'");
-		if($findManager->num_rows <= 0){
-			$_SESSION['Staff'] = $UserName;
+		if($findStaff->num_rows <= 0){
 			echo "<script>
-			window.location.href='../CRSStaffPage.html';
+			window.location.href='../CRSManagerPage.html';
 			</script>";
 		}
 		else{
+			$_SESSION['Staff'] = $UserName;
 			echo "<script>
-			window.location.href='../CRSManagerPage.html';
+			window.location.href='../CRSStaffPage.html';
 			</script>";
 		}
 	}
