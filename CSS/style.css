@@ -17,7 +17,7 @@
       height: 700px;
 }
 
-#Managerbody , #Volunteerbody,  #OrganizeTripBody{
+#Managerbody , #Volunteerbody,  #OrganizeTripBody, #ApplyTripBody{
   background-color: #B8FF99;
   background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
 }
@@ -52,6 +52,16 @@
   box-shadow: 0px 0px 50px #8EF6F0;
 }
 
+#ApplyTripForm{
+  margin-top: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background-color: #C2F9F6;
+  box-shadow: 0px 0px 50px #8EF6F0;
+}
+
 #manageProfileForm{
   padding-left: 5%;
   padding-right: 5%;
@@ -61,7 +71,7 @@
   box-shadow: 0px 0px 50px #8EF6F0;
 }
 
-.form label, #loginForm label,#manageProfileForm label{
+.form label, #loginForm label,#manageProfileForm label,#ApplyTripForm label{
   font-size: 20px;
   margin: 0px;
 }
@@ -70,7 +80,7 @@
   font-size: 20px;
 }
 
-.form input, #loginForm input,#manageProfileForm input{
+.form input, #loginForm input,#manageProfileForm input, #ApplyTripForm input{
   font-size: 20px;
   padding-left: 3%;
 }

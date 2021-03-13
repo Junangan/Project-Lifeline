@@ -161,8 +161,8 @@ function Volunteer_Validate(){
 	}
 	else if(document.getElementById('DocumentUpload').disabled==false){
 		var image = document.getElementById('image').files[0];
-        if (image.size/1024 >= 2048) {
-            alert("File too Big, please select a file less than 2mb");
+        if (image.size/1024 >= 3096) {
+            alert("File too Big, please select a file less than 3mb");
             return false;
         }
 	}

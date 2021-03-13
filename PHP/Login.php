@@ -53,7 +53,7 @@ if($result->num_rows <= 0){
 	$date = date("Y-m-d");
 	$AddUserQuery = "INSERT INTO User values('Manager1','Manager1','Manager1','1234567890')";
 	$conn->query($AddUserQuery);
-	$AddManagerQuery = "INSERT INTO Staff values(Null,'Manager','$date','Manager1')";
+	$AddManagerQuery = "INSERT INTO Staff values(NUll,'Manager','$date','Manager1')";
 	$conn->query($AddManagerQuery);
 }
 
