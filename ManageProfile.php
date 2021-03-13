@@ -17,7 +17,7 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
 					<li class="nav-item"><a class="nav-link" href="#">Manage Profile</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Apply Trip</a></li>
+					<li class="nav-item"><a class="nav-link" href="applyTrip.php">Apply Trip</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">View Application</a></li>
 					<li class="nav-item"><a class="nav-link" href="index.php">Log Out</a></li>
 				</ul>
