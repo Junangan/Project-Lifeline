@@ -29,6 +29,16 @@ function LoginshowPassword(){
 	}
 }
 
+function showStaffPassword(){
+	var password = document.getElementById('StaffPassword');
+	if(password.type === "password"){
+		password.type = "text";
+	}
+	else{
+		password.type = "password";
+	}
+}
+
 function showUploadDocument(){
 	var uploadDocument = document.getElementById('DocumentUpload');
 	if(uploadDocument.disabled == true){
