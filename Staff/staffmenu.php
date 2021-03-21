@@ -59,28 +59,55 @@
 			<div class="col-md-5">
 				<h2 class="container text-center mb-3 py-4">Trips handled by Staff <span id="staffName" value="xx"></span></h2>
 				<?php
-					$tripArray = array(
-									$trip[] = ["tripID" => "Trip1", "crisisType" => "FLOOD", "tripDate" => "12-6-2020", "location" => "Selangor", "minDuration" => 5, "numVolunteers" => 4, "description" => "flood in town", "requirements" => "swimming certs"],
-									$trip[] = ["tripID" => "Trip2", "crisisType" => "WILDFIRE", "tripDate" => "12-8-2020", "location" => "Melaka", "minDuration" => 16, "numVolunteers" => 8, "description" => "wildfire in rainforest", "requirements" => "fire rescue certs"]
-								);
+					session_start();
 
+					$SERVERNAME = "localhost";
+					$dbUsername = "root";
+					$dbPassword = "";
 
-					foreach ($tripArray as $trip) {
-						echo "<div class='container' id='tripDisplay'>
-								<div class='vertical-space'></div>
-								<div class='row g-3 border border-dark mb-3'>
-									<div class='col-md-3 text-center'><img src='' alt='tripImage'></div>
-									<div class='col-md-9'>
-										<div class='row'>
-											<p class='col-12' id='tripIdDate'>Crisis Trip Title - " . $trip["tripDate"] . "</p>
-											<p class='col-5' id='tripStatus'>Status: " . $trip["crisisType"] . "</p>
-											<p class='col-7' id='tripDestination'>Destination: ". $trip["location"] ."</p>
-											<p class='col-12' id='tripParticipants'>Number of participants: " . $trip["numVolunteers"] . "</p>	
-										</div>							
-									</div>
-								</div>
-							</div>";
+					$conn = new mysqli ($SERVERNAME ,$dbUsername ,$dbPassword);
+
+					//checking the sql
+					if($conn->connect_error){
+						die("Some thing error <br>".$connect->connect_error);
 					}
+
+					$conn->select_db("CRS");
+
+					$StaffUname = $_SESSION['Staff'];
+
+					/*Not good practice for replacing $staffID with every statement, trying to convert from object to array to string type data...*/
+					$getStaffIDByStaffUnameQ = "SELECT StaffID FROM Staff WHERE Username='$StaffUname'";
+					$staffID =  $conn->query($getStaffIDByStaffUnameQ);
+					$staffID = $staffID->fetch_assoc();
+					$staffID = $staffID['StaffID'];
+
+
+					$getTripsByStaffIDQ = "SELECT * FROM Trip WHERE StaffID='$staffID'";
+					$result = $conn->query($getTripsByStaffIDQ);
+					if(!$result){
+						echo "<script>alert('No trips found managed by this staff! ".$result->error."')</script>";
+					}
+					else if($result->num_rows > 0){
+						while($row = $result->fetch_assoc()){
+							echo "<div class='container' id='tripDisplay'>
+									<div class='vertical-space'></div>
+									<div class='row g-3 border border-dark mb-3'>
+										<div class='col-md-3 text-center'><img src='' alt='tripImage'></div>
+										<div class='col-md-9'>
+											<div class='row'>
+												<p class='col-12' id='tripIdDate'>Crisis Trip Title - " . $row["tripDate"] . "</p>
+												<p class='col-5' id='tripStatus'>Status: " . $row["crisisType"] . "</p>
+												<p class='col-7' id='tripDestination'>Destination: ". $row["location"] ."</p>
+												<p class='col-12' id='tripParticipants'>Number of participants: " . $row["numVolunteer"] . "</p>	
+											</div>							
+										</div>
+									</div>
+								</div>";
+						}
+					}
+
+					
 				?>
 			</div>
 			<div class="col-md-2"></div>
@@ -122,6 +149,8 @@
 								</div>';
 							$i++;
 						}
+
+						$conn->close();
 						
 					?>
 				</div>
