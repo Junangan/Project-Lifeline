@@ -44,45 +44,64 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-7 table-responsive">
 				<h2 class="text-center">All Trip</h2>
-				<table class="table table-hover table-light table-bordered">
-				<thead class="thead-light" style="background-color:#23415c;">
-					<tr>
-						<th class="text-center text-truncate" scope="col" >Trip ID</th>
-						<th class="text-center text-truncate" scope="col" >Date</th>
-						<th class="text-center text-truncate" scope="col" >Duration</th>
-						<th class="text-center text-truncate" scope="col" >Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php
-						$conn = new mysqli ('localhost', 'root', '',"CTIS");
+				<div style="height:800px; padding-left:40px; padding-right:40px; overflow: auto;">
+				<?php
+					session_start();
 
-						if($conn->select_db("CRS") == false){
-							$CreateDatabase = "CREATE DATABASE CRS";
-							$conn->query($CreateDatabase);
-							$conn->select_db("CRS");
-						}
-						else{
-							$conn->select_db("CRS");
-						}
+					$SERVERNAME = "localhost";
+					$dbUsername = "root";
+					$dbPassword = "";
 
-						$GetAllTripQuery = "SELECT tripID,description,tripDate,minDuration from Trip";
-						$result = $conn->query($GetAllTripQuery);
-						if(!$result){
+					$conn = new mysqli ($SERVERNAME ,$dbUsername ,$dbPassword);
+
+					//checking the sql
+					if($conn->connect_error){
+						die("Some thing error <br>".$connect->connect_error);
+					}
+
+					$conn->select_db("CRS");
+
+					$getAllTrips = "SELECT * FROM Trip";
+					$result = $conn->query($getAllTrips);
+					if(!$result){
+						echo "<div class='container'>
+									<div class='vertical-space'></div>
+									<p class='text-center'>No any Trip</p>
+								</div>";
+						//echo "<script>alert('No trips found managed by this staff! ".$result->error."')</script>";
+					}
+					else if($result->num_rows > 0){
+						while($row = $result->fetch_assoc()){
+							echo "<div class=''>
+									<div class='vertical-space'></div>
+									<div class='row g-3 border border-dark mb-3'>";
+									if($row['crisisType']=='Flood'){
+										echo"<div class='col-lg-3 col-md-4'><img src='image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+									}
+									else if($row['crisisType']=='EarthQuake'){
+										echo"<div class='col-lg-3 col-md-4'><img src='image/earthquake.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+									}
+									else{
+										echo"<div class='col-lg-3 col-md-4'><img src='image/wildfire.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+									}
+									echo"<div class='col-lg-9 col-md-8'>
+											<div class='row'>
+												<p class='col-6' id='tripId'>Trip ID: " . $row["tripID"] . "</p>
+												<p class='col-6' id='tripIdDate'>Trip Date: " . $row["tripDate"] . "</p>
+												<p class='col-6' id='tripStatus'>Type: " . $row["crisisType"] . "</p>
+												<p class='col-6' id='tripDestination'>Destination: ". $row["location"] ."</p>
+												<p class='col-6' id='tripParticipants'>Participant needed: " . $row["numVolunteer"] . "</p>
+												<p class='col-6' id='tripDuration'>Duration: " . $row["minDuration"] . "</p>	
+											</div>							
+										</div>
+									</div>
+								</div>";
 						}
-						else if($result->num_rows > 0){
-							while($row = $result->fetch_assoc()){
-								echo "<tr>";
-								echo '<td>'.$row['tripID'].'</td>';
-								echo '<td>'.$row['tripDate'].'</td>';
-								echo '<td>'.$row['minDuration'].'</td>';
-								echo '<td>'.$row['description'].'</td>';
-								echo "</tr>";
-							}
-						}
-					?>
-				</tbody>
-			</table>
+					}
+
+					
+				?>
+				</div>
 			</div>
 		</div>
 	</div>

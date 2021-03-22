@@ -39,60 +39,71 @@
 				</div>
 			</form>
 		</div>
-		<div class="mb-5 back row">
-			<input type="button" class="btn btn-block col-lg-2 col-md-4 offset-md-4 offset-2 col-8 offset-lg-5" value="Back" onclick="document.location='VolunteerPage.html'">		
+		<div class="mb-5 back">
+			<input type="button" class="btn btn-block col-lg-2 col-md-4 offset-md-4 offset-2 col-8 offset-lg-5" value="Back" onclick="document.location='VolunteerPage.html'">
 		</div>
-			<div class="m-3">
-				<div class="header">
-					<h2>All Trip</h1>
+		<div class="m-3">
+			<div class="header">
+				<h2>All Trip</h1>
+			</div>
+			<div style="height:295px; padding-left:40px; padding-right:40px; overflow: auto;">
+				<?php
+					session_start();
+
+					$SERVERNAME = "localhost";
+					$dbUsername = "root";
+					$dbPassword = "";
+
+					$conn = new mysqli ($SERVERNAME ,$dbUsername ,$dbPassword);
+
+					//checking the sql
+					if($conn->connect_error){
+						die("Some thing error <br>".$connect->connect_error);
+					}
+
+					$conn->select_db("CRS");
+
+					$getAllTrips = "SELECT * FROM Trip";
+					$result = $conn->query($getAllTrips);
+					if(!$result){
+						echo "<div class='container'>
+									<div class='vertical-space'></div>
+									<p class='text-center'>No any Trip</p>
+								</div>";
+						//echo "<script>alert('No trips found managed by this staff! ".$result->error."')</script>";
+					}
+					else if($result->num_rows > 0){
+						while($row = $result->fetch_assoc()){
+							echo "<div class=''>
+									<div class='vertical-space'></div>
+									<div class='row g-3 border border-dark mb-3'>";
+									if($row['crisisType']=='Flood'){
+										echo"<div class='col-lg-3 col-md-4'><img src='image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+									}
+									else if($row['crisisType']=='EarthQuake'){
+										echo"<div class='col-lg-3 col-md-4'><img src='image/earthquake.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+									}
+									else{
+										echo"<div class='col-lg-3 col-md-4'><img src='image/wildfire.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+									}
+									echo"<div class='col-lg-9 col-md-8'>
+											<div class='row'>
+												<p class='col-6' id='tripId'>Trip ID: " . $row["tripID"] . "</p>
+												<p class='col-6' id='tripIdDate'>Trip Date: " . $row["tripDate"] . "</p>
+												<p class='col-6' id='tripStatus'>Type: " . $row["crisisType"] . "</p>
+												<p class='col-6' id='tripDestination'>Destination: ". $row["location"] ."</p>
+												<p class='col-6' id='tripParticipants'>Participant needed: " . $row["numVolunteer"] . "</p>
+												<p class='col-6' id='tripDuration'>Duration: " . $row["minDuration"] . "</p>	
+											</div>							
+										</div>
+									</div>
+								</div>";
+						}
+					}
+
+					
+				?>
 				</div>
-				<table class="table table-hover table-bordered">
-					<thead class="thead-dark" style="background-color:#23415c;">
-						<tr>
-							<th class="text-center text-truncate" style="width: 10%" scope="col" >Trip ID</th>
-							<th class="text-center text-truncate" style="width: 25%"  scope="col" >Description</th>
-							<th class="text-center text-truncate" style="width: 10%" scope="col" >Trip Date</th>
-							<th class="text-center text-truncate" style="width: 10%" scope="col" >Location</th>
-							<th class="text-center text-truncate" style="width: 10%" scope="col" >Duration</th>
-							<th class="text-center text-truncate" style="width: 10%" scope="col" >Crisis Type</th>
-							<th class="text-center text-truncate" style="width: 10%" scope="col">Requirements</th>
-							<th class="text-center text-truncate" style="width: 15%" scope="col">Remaining Volunteer needed</th>
-						</tr>
-					</thead>
-					<tbody>
-					<?php
-						$conn = new mysqli ('localhost', 'root', '',"CTIS");
-
-						if($conn->select_db("CRS") == false){
-							$CreateDatabase = "CREATE DATABASE CRS";
-							$conn->query($CreateDatabase);
-							$conn->select_db("CRS");
-						}
-						else{
-							$conn->select_db("CRS");
-						}
-
-						$GetAllAvailableTripQuery = "SELECT * from Trip";
-						$result = $conn->query($GetAllAvailableTripQuery);
-						if(!$result){
-						}
-						else if($result->num_rows > 0){
-							while($row = $result->fetch_assoc()){
-								echo "<tr>";
-								echo '<td style="width: 10%">'.$row['tripID'].'</td>';
-								echo '<td style="width: 25%">'.$row['description'].'</td>';
-								echo '<td style="width: 10%">'.$row['tripDate'].'</td>';
-								echo '<td style="width: 10%">'.$row['location'].'</td>';
-								echo '<td style="width: 10%">'.$row['minDuration'].'</td>';
-								echo '<td style="width: 10%">'.$row['crisisType'].'</td>';
-								echo '<td style="width: 10%">'.$row['requirements'].'</td>';
-								echo '<td style="width: 15%">'.$row['numVolunteer'].'</td>';
-								echo "</tr>";
-							}
-						}
-					?>
-				</tbody>
-				</table>
 			</div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
