@@ -45,7 +45,7 @@
 				<label class="form-label" for="tripDate">Select Trip Date</label>
 				<div class="input-group mb-3">
 						<label class="control-label input-group-text" for="tripDatePicker">Select a date</label>
-						<input type="text" class="form-control" id="tripDatePicker" name="tripDatePicker" placeholder="DD/MM/YYYY" required/>
+						<input type="text" class="form-control" id="tripDatePicker" name="tripDatePicker" placeholder="MM/DD/YYYY" required/>
 				</div>
 				<div class="mb-3">
 					<label class="form-label" for="tripDuration">Trip Duration(Days)</label>
@@ -84,7 +84,7 @@
 	      var date_input=$('input[name="tripDatePicker"]'); //our date input has the name "tripDatePicker"
 	      var container= $('input').length<0 ? $('input.tripDatePicker').parent() : "body";
 	      var options={
-	        format: 'dd/mm/yyyy',
+	        format: 'mm/dd/yyyy',
 	        container: container,
 	        orientation: "top right",
 	        todayHighlight: true,
