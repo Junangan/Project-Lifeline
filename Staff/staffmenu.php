@@ -16,6 +16,20 @@
 			border-style: black 1px;
 			background-color: grey;
 		}
+		a.tripLink {
+			text-decoration: none;
+			color: black;
+		}
+		a.tripLink:hover {
+			/*either glow/darken/brighten or slightly pop up*/
+		}
+		a.appLink {
+			text-decoration: none;
+			color: black;
+		}
+		a.appLink:hover {
+			/*either glow/darken/brighten or slightly pop up*/
+		}
 	</style>
 	<title>Staff Menu</title>
 </head>
@@ -33,22 +47,14 @@
 					</li>
 					<!-- TEMP NAV DIRECTORY -->
 					<li class="nav-item">
-						<a class="nav-link" href="manageapplications.html">Manage Applications</a>
+						<a class="nav-link" href="#">Manage Applications</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="organizetrip.html">Organize Trip</a>
 					</li>
 					<!-- TEMP NAV DIRECTORY END -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownLogin" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Login</a>
-						<div class="dropdown-menu bg-light" aria-labelledby="navbarDropdownLogin" id="dropdownLogin">
-						<input class="form-control dropdown-item black-50" type="" name="" placeholder="Username">
-						<input class="form-control dropdown-item black-50" type="" name="" placeholder="Password">
-							<a class="dropdown-item" href="#" for="dropdownLogin" type="submit" method="POST">Login</a>
-						</div>
-					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../signup.html">Sign Up</a>
+						<a class="nav-link" href="../PHP/signOut.php">Sign Out</a>
 					</li>
 				</ul>
 			</div>
@@ -86,23 +92,25 @@
 					$getTripsByStaffIDQ = "SELECT * FROM Trip WHERE StaffID='$staffID'";
 					$result = $conn->query($getTripsByStaffIDQ);
 					if(!$result){
-						echo "<script>alert('No trips found managed by this staff! ".$result->error."')</script>";
+						echo "<script>alert('No trips found managed by this staff! ".$conn->error."')</script>";
 					}
 					else if($result->num_rows > 0){
 						while($row = $result->fetch_assoc()){
 							echo "<div class='container' id='tripDisplay'>
 									<div class='vertical-space'></div>
-									<div class='row g-3 border border-dark mb-3'>
-										<div class='col-md-3 text-center'><img src='' alt='tripImage'></div>
-										<div class='col-md-9'>
-											<div class='row'>
-												<p class='col-12' id='tripIdDate'>Crisis Trip Title - " . $row["tripDate"] . "</p>
-												<p class='col-5' id='tripStatus'>Status: " . $row["crisisType"] . "</p>
-												<p class='col-7' id='tripDestination'>Destination: ". $row["location"] ."</p>
-												<p class='col-12' id='tripParticipants'>Number of participants: " . $row["numVolunteer"] . "</p>	
-											</div>							
+									<a class='tripLink' href='#' id='".$row["tripID"]."'>
+										<div class='row g-3 border border-dark mb-3'>
+											<div class='col-md-3 text-center'><img src='' alt='tripImage'></div>
+											<div class='col-md-9'>
+												<div class='row'>
+													<p class='col-12' id='tripIdDate'>Crisis Trip Title - " . $row["tripDate"] . "</p>
+													<p class='col-5' id='tripStatus'>Status: " . $row["crisisType"] . "</p>
+													<p class='col-7' id='tripDestination'>Destination: ". $row["location"] ."</p>
+													<p class='col-12' id='tripParticipants'>Number of participants: " . $row["numVolunteer"] . "</p>	
+												</div>							
+											</div>
 										</div>
-									</div>
+									</a>
 								</div>";
 						}
 					}
@@ -115,7 +123,7 @@
 				<h2 class="container text-center mb-3 py-4">Applications from the Trip</h2>
 				<div class="container" id="applicationList">
 					<?php
-						$volArray = array(
+/*						$volArray = array(
 										$volunteer[] = ["name" => "Adam", "dateOfBirth" => "14/6/1993", "gender" => "male"],
 										$volunteer[] = ["name" => "Joseph", "dateOfBirth" => "14/1/1989", "gender" => "male"]
 									);
@@ -126,7 +134,6 @@
 									);
 
 						$i=0;
-
 						foreach ($appArray as $application) {
 							echo '<div class="appSection my-2">
 									<table class="table table-borderless">
@@ -149,6 +156,41 @@
 								</div>';
 							$i++;
 						}
+*/
+						/*header("Content-Type: application/json; charset=UTF-8");
+						$tripID = $_POST["tripID"];
+						$tripID = json_decode($tripID, false);*/
+
+
+						$getAppAndVolFromTripIDQ = "SELECT * FROM Application JOIN Volunteer ON Application.VolunteerID=Volunteer.VolunteerID WHERE Application.tripID = '$tripID'";
+						$result = $conn->query($getAppAndVolFromTripIDQ);
+						if (!$result) {
+							echo $conn->error;
+						} else if ($result->num_rows > 0) {
+							while ($row = $result->fetch_assoc()) {
+								echo '<div class="appSection my-2">
+									<a class="appLink" href="#" value="'.$row["applicationID"].'">
+										<table class="table table-borderless">
+											<tr>
+												<td>Name:</td>
+												<td id="name">'.$row["name"].'</td>
+												<td>Date of Birth:</td>
+												<td id="dateOfBirth">'.$row["dateOfBirth"].'</td>
+											</tr>
+											<tr>
+												<td>Date:</td>
+												<td id="applicationDate">'.$row["applicationDate"].'</td>
+												<td>Gender:</td>
+												<td id="gender">'.$row["gender"].'</td>
+											</tr>
+											<tr>
+												<td colspan="4" class="text-end fw-bold">Status: '.$row["status"].'</td>
+											</tr>
+										</table>
+									</a>
+								</div>';
+							}
+						}
 
 						$conn->close();
 						
@@ -164,6 +206,39 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<script>
+		/*create cookie with value tripID*/
+/*		$(".tripLink").click(function(){
+			var tripID = $(this).val();	// current value on the link (tripID)
+			document.cookie = "tripID: "+tripID;
+			location.reload();
+		});*/
+		/*create JSON with value tripID*/
+		$(".tripLink").click(function(){
+			var tripID = $(this).attr("id");	// current id on the link (tripID)
+			alert("tripID: "+tripID);
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+    				// console.log(xhttp.responseText);
+    			}
+    		};
+			xhttp.open('POST','viewapplicationstatus.php', {tripID : tripID});
+			xhttp.send();
+			// location.reload();
+		});
+
+		$(".appLink").click(function(){
+			var appID = $(this).attr("id");
+			alert("appID: "+appID);
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+    			if (this.readyState == 4 && this.status == 200) {
+    				// console.log(xhttp.responseText);
+    			}
+    		};
+			xhttp.open('POST','viewapplicationstatus.php', {appID : appID}, true);
+			xhttp.send();
+		}
 
 	</script>
 </body>
