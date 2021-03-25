@@ -196,3 +196,14 @@ function Volunteer_Validate(){
 		return true;
 	}
 }
+
+function apply_Validation(){
+	if(document.getElementById('TripID').value<1){
+		alert('Cannot enter less then 1, please enter again');
+		document.getElementById('TripID').value = "";
+		return false;
+	}
+	else{
+		return true;
+	}
+}

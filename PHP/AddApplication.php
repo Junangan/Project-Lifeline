@@ -56,6 +56,7 @@ else{
 		alert('Apply Trip Successfully');
 		window.location.href='../applyTrip.php';
 		</script>";
+	
 }
 
 $conn->close();

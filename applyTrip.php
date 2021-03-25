@@ -27,7 +27,7 @@
 			<div class="header">
 				<h1>Apply Trip</h1>
 			</div>
-			<form action="PHP/AddApplication.php" method="Post">
+			<form action="PHP/AddApplication.php" method="Post" onsubmit="return apply_Validation()">
 				<div class="m-4 form-group">
 					<label for="TripID">Trip ID:</label>
 					<input class="form-control" type="number" name="tripID" id="TripID" placeholder="Enter trip ID to apply" required>
