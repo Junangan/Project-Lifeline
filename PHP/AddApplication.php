@@ -50,13 +50,22 @@ else{
 	$result = $conn->query($GetVolunteerQuery);
 	$row = $result->fetch_assoc();
 	$VolunteerID = $row['VolunteerID'];
-	$AddApplicationQuery = "INSERT INTO Application values(NULL,'$date','NEW',NULL,'$VolunteerID','$TripID')";
-	$conn->query($AddApplicationQuery);
-	echo "<script>
-		alert('Apply Trip Successfully');
-		window.location.href='../applyTrip.php';
-		</script>";
-	
+	$findApplicationQuery = "SELECT * from Application WHERE tripID ='$TripID' AND VolunteerID='$VolunteerID' AND status='NEW'";
+	$result = $conn->query($findApplicationQuery);
+	if($result->num_rows <=0){
+		$AddApplicationQuery = "INSERT INTO Application values(NULL,'$date','NEW',NULL,'$VolunteerID','$TripID')";
+		$conn->query($AddApplicationQuery);
+		echo "<script>
+			alert('Apply Trip Successfully');
+			window.location.href='../applyTrip.php';
+			</script>";
+	}
+	else{
+		echo "<script>
+			alert('You have already apply this trip , please waiting for the verification by the staff');
+			window.location.href='../applyTrip.php';
+			</script>";
+	}
 }
 
 $conn->close();

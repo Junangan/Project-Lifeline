@@ -4,11 +4,17 @@
 		<meta charset="UTF-8">
 		<title>Apply Trip</title>
 		<link rel="stylesheet" href="CSS/style.css">
+		<style type="text/css">
+			#applyTripBody{
+			  background-color: #B8FF99;
+			  background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
+			}
+		</style>
 	    <script type="text/javascript" src="JavaScript/script.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	</head>
-	<body id="ApplyTripBody" class="text-black">
+	<body id="applyTripBody">
 		<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
 			<a class="navTitle" href="VolunteerPage.html">CRS</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,30 +29,11 @@
 				</ul>
 			</div>
 		</nav>
-		<div id="ApplyTripForm" class="offset-lg-4 offset-md-3 offset-2 col-8 col-md-6 col-lg-4">
-			<div class="header">
-				<h1>Apply Trip</h1>
-			</div>
-			<form action="PHP/AddApplication.php" method="Post" onsubmit="return apply_Validation()">
-				<div class="m-4 form-group">
-					<label for="TripID">Trip ID:</label>
-					<input class="form-control" type="number" name="tripID" id="TripID" placeholder="Enter trip ID to apply" required>
-				</div>
-				<div class="button form-row">
-					<div class="col-md-6 offset-md-3">
-						<input type="submit" class="btn btn-block btn-primary"  name="submit" value="Enter">
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="mb-5 back">
-			<input type="button" class="btn btn-block col-lg-2 col-md-4 offset-md-4 offset-2 col-8 offset-lg-5" value="Back" onclick="document.location='VolunteerPage.html'">
-		</div>
-		<div class="m-3">
+		<div>
 			<div class="header">
 				<h2>All Trip</h1>
 			</div>
-			<div style="height:295px; padding-left:40px; padding-right:40px; overflow: auto;">
+			<div>
 				<?php
 					session_start();
 
@@ -74,30 +61,38 @@
 					}
 					else if($result->num_rows > 0){
 						while($row = $result->fetch_assoc()){
-							echo "<div class=''>
+							echo "<form class='container' action='PHP/AddApplication.php' method='Post'>
 									<div class='vertical-space'></div>
 									<div class='row g-3 border border-dark mb-3'>";
 									if($row['crisisType']=='Flood'){
-										echo"<div class='col-lg-3 col-md-4'><img src='image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+										echo"<div class='col-xl-2 col-md-4'><img src='image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; 
+											width:150px; 
+										 	height:100px;'></div>";
 									}
 									else if($row['crisisType']=='EarthQuake'){
-										echo"<div class='col-lg-3 col-md-4'><img src='image/earthquake.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+										echo"<div class='col-xl-2 col-md-4'><img src='image/earthquake.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
 									}
 									else{
-										echo"<div class='col-lg-3 col-md-4'><img src='image/wildfire.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
+										echo"<div class='col-xl-2 col-md-4'><img src='image/wildfire.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
 									}
-									echo"<div class='col-lg-9 col-md-8'>
+									echo"<div class='col-xl-10 col-md-8'>
 											<div class='row'>
-												<p class='col-6' id='tripId'>Trip ID: " . $row["tripID"] . "</p>
-												<p class='col-6' id='tripIdDate'>Trip Date: " . $row["tripDate"] . "</p>
-												<p class='col-6' id='tripStatus'>Type: " . $row["crisisType"] . "</p>
-												<p class='col-6' id='tripDestination'>Destination: ". $row["location"] ."</p>
-												<p class='col-6' id='tripParticipants'>Participant needed: " . $row["numVolunteer"] . "</p>
-												<p class='col-6' id='tripDuration'>Duration: " . $row["minDuration"] . "</p>	
+												<p class='col-4' id='tripID'>Trip ID: " . $row["tripID"] . "</p>
+												<input type='hidden' value=". $row["tripID"] ." name='tripID' id='tripID' />
+												<p class='col-4' id='tripIdDate'>Trip Date: " . $row["tripDate"] . "</p>
+												<p class='col-4' id='description'>Description: ". $row["description"]."
+												</p>
+												<p class='col-4' id='tripStatus'>Type: " . $row["crisisType"] . "
+												</p>
+												<p class='col-4' id='tripDestination'>Destination: ". $row["location"] ."</p>
+												<p class='col-4' id='Requirement'>Requirement: ". $row["requirements"] ."</p>
+												<p class='col-4' id='tripParticipants'>Participant needed: " . $row["numVolunteer"] . "</p>
+												<p class='col-4' id='tripDuration'>Duration: " . $row["minDuration"] . "</p>
+												<input class='col-3 btn btn-primary ' type='submit' id='apply trip' value='Apply this trip' style='height:35px; margin-top:-5px;'>	
 											</div>							
 										</div>
 									</div>
-								</div>";
+								</form>";
 						}
 					}
 
