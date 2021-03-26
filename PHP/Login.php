@@ -31,12 +31,6 @@ $result = $conn->query($GetUserQuery);
 if(!$result){
 	$CreateUserTableQuery = "CREATE TABLE User(username VARCHAR(255) PRIMARY KEY,password VARCHAR(255) NOT NULL,name VARCHAR(255) NOT NULL,phone integer(11) NOT NULL)";
 	$conn->query($CreateUserTableQuery);
-	$GetStaffQuery = "SELECT * from Staff";
-	$result = $conn->query($GetStaffQuery);
-	if(!$result){
-		$CreateStaffTableQuery = "CREATE TABLE Staff(StaffID integer(10) AUTO_INCREMENT PRIMARY KEY,position VARCHAR(255) NOT NULL,joinDate DATE NOT NULL,username VARCHAR(255) NOT NULL,foreign key(username) references User(username))";
-		$conn->query($CreateStaffTableQuery);
-	}
 	$GetVolunteerQuery = "SELECT * from Volunteer";
 	$result = $conn->query($GetVolunteerQuery);
 	if(!$result){
@@ -47,6 +41,12 @@ if(!$result){
 	}
 }
 
+$GetStaffQuery = "SELECT * from Staff";
+$result = $conn->query($GetStaffQuery);
+if(!$result){
+	$CreateStaffTableQuery = "CREATE TABLE Staff(StaffID integer(10) AUTO_INCREMENT PRIMARY KEY,position VARCHAR(255) NOT NULL,joinDate DATE NOT NULL,username VARCHAR(255) NOT NULL,foreign key(username) references User(username))";
+		$conn->query($CreateStaffTableQuery);
+}
 $findFirstManager = "SELECT * from Staff where username='Manager1'";
 $result = $conn->query($findFirstManager);
 if($result->num_rows <= 0){
