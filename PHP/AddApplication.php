@@ -47,14 +47,20 @@ else{
 	//to get the volunteer id
 	$VolunteerName = $_SESSION['Volunteer'];
 	$GetVolunteerQuery = "SELECT * from Volunteer WHERE username='$VolunteerName'";
-	$result = $conn->query($GetVolunteerQuery);
-	$row = $result->fetch_assoc();
+	$Volunteerresult = $conn->query($GetVolunteerQuery);
+	$row = $Volunteerresult->fetch_assoc();
 	$VolunteerID = $row['VolunteerID'];
 	$findApplicationQuery = "SELECT * from Application WHERE tripID ='$TripID' AND VolunteerID='$VolunteerID' AND status='NEW'";
-	$result = $conn->query($findApplicationQuery);
-	if($result->num_rows <=0){
+	$Appresult = $conn->query($findApplicationQuery);
+	if($Appresult->num_rows <=0){
 		$AddApplicationQuery = "INSERT INTO Application values(NULL,'$date','NEW',NULL,'$VolunteerID','$TripID')";
 		$conn->query($AddApplicationQuery);
+		$findTripQuery = "SELECT * from Trip WHERE tripID ='$TripID' AND numVolunteer!=0";
+		$result = $conn->query($findTripQuery);
+		$row = $result->fetch_assoc();
+		$numVolunteer=$row['numVolunteer'];
+		$UpdateTripQuery = "UPDATE Trip SET numVolunteer='$numVolunteer'-1 WHERE tripID='$TripID'";
+		$result = $conn->query($UpdateTripQuery);
 		echo "<script>
 			alert('Apply Trip Successfully');
 			window.location.href='../applyTrip.php';
@@ -62,7 +68,7 @@ else{
 	}
 	else{
 		echo "<script>
-			alert('You have already apply this trip , please waiting for the verification by the staff');
+			alert('You have already apply this trip');
 			window.location.href='../applyTrip.php';
 			</script>";
 	}
