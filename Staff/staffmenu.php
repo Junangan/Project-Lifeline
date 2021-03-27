@@ -3,18 +3,24 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<link rel="stylesheet" href="../CSS/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<style>
 		.vertical-space {height: 25px;}
 		.button-rounded {border-radius: 5px;}
 		#tripDisplay {background-color: rgb(226, 220, 205);}
-		#applicationList {
-			background-color: #E2DCCD;
-			padding: 4px 10px;
-		}
 		.appSection {
 			border-style: black 1px;
-			background-color: grey;
+			background-color: #E2DCCD;
+		}
+
+		body {
+			background-color: #B8FF99;
+  			background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
+		}
+
+		.appSection:hover {
+			background-color: #ede9de;
 		}
 		a.tripLink {
 			text-decoration: none;
@@ -23,47 +29,34 @@
 		a.tripLink:hover {
 			/*either glow/darken/brighten or slightly pop up*/
 		}
-		a.appLink {
+		a#appLink {
 			text-decoration: none;
 			color: black;
 		}
-		a.appLink:hover {
+		aappLink:hover {
 			/*either glow/darken/brighten or slightly pop up*/
 		}
 	</style>
 	<title>Staff Menu</title>
 </head>
 <body>
-	<nav class="navbar navbar-expand bg-light primary">
-		<a class="navbar-brand px-3" href="../index.php">CRSIS</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	<nav class="navbar navbar-expand-sm navbar-light bg-light sticky-top">
+		<a class="navTitle" href="../CRSStaffPage.html">CRS</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-
-			<div class="collapse navbar-collapse justify-content-end px-3" id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="../index.php">About</a>
-					</li>
-					<!-- TEMP NAV DIRECTORY -->
-					<li class="nav-item">
-						<a class="nav-link" href="#">Manage Applications</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="organizetrip.html">Organize Trip</a>
-					</li>
-					<!-- TEMP NAV DIRECTORY END -->
-					<li class="nav-item">
-						<a class="nav-link" href="../PHP/signOut.php">Sign Out</a>
-					</li>
-				</ul>
-			</div>
+		<div class="collapse  navbar-collapse" id="myNavbar">
+			<ul class="navbar-nav  w-100 justify-content-end">
+				<li class="nav-item nav"><a class="nav-link" href="organizetrip.html">Organize Trip</a></li>
+				<li class="nav-item nav"><a class="nav-link" href="#">Manage Application</a></li>
+				<li class="nav-item nav"><a class="nav-link" href="../index.php">Log Out</a></li>
+			</ul>
+		</div>
 	</nav>
 
-	<div class="container mb-3">
+	<div class="mb-3">
 		<div class="row g-3">
-			<div class="col-md-5">
-				<h2 class="container text-center mb-3 py-4">Trips handled by Staff <span id="staffName" value="xx"></span></h2>
+			<div class="offset-1 col-md-4">
 				<?php
 					session_start();
 
@@ -82,6 +75,8 @@
 
 					$StaffUname = $_SESSION['Staff'];
 
+					echo"<h2 class='container text-center mb-3 py-4'>Trips handled by Staff <span id='staffName' value='xx'>".$StaffUname."</span></h2>";
+
 					/*Not good practice for replacing $staffID with every statement, trying to convert from object to array to string type data...*/
 					$getStaffIDByStaffUnameQ = "SELECT StaffID FROM Staff WHERE Username='$StaffUname'";
 					$staffID =  $conn->query($getStaffIDByStaffUnameQ);
@@ -91,35 +86,45 @@
 
 					$getTripsByStaffIDQ = "SELECT * FROM Trip WHERE StaffID='$staffID'";
 					$result = $conn->query($getTripsByStaffIDQ);
-					if(!$result){
-						echo "<script>alert('No trips found managed by this staff! ".$conn->error."')</script>";
-					}
-					else if($result->num_rows > 0){
-						while($row = $result->fetch_assoc()){
-							echo "<div class='container' id='tripDisplay'>
-									<div class='vertical-space'></div>
-									<a class='tripLink' href='#' id='".$row["tripID"]."'>
-										<div class='row g-3 border border-dark mb-3'>
-											<div class='col-md-3 text-center'><img src='' alt='tripImage'></div>
-											<div class='col-md-9'>
+						if(!$result){
+							echo "<div class='container'>
+										<div class='vertical-space'></div>
+										<p class='text-center'>No any Trip</p>
+									</div>";
+							//echo "<script>alert('No trips found managed by this staff! ".$result->error."')</script>";
+						}
+						else if($result->num_rows > 0){
+							while($row = $result->fetch_assoc()){
+								echo "<div>
+										<div class='vertical-space'></div>
+										<button class=' row g-3 border border-dark mb-3' style='background-color: rgb(226, 220, 205);' onclick='changeVolunteerApplication(" . $row["tripID"] . ")'>";
+										if($row['crisisType']=='Flood'){
+											echo"<div class='col-xl-2 col-md-4'><img src='../image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; padding-bottom:5px; width:150px; height:100px;'></div>";
+										}
+										else if($row['crisisType']=='EarthQuake'){
+											echo"<div class='col-xl-2 col-md-4'><img src='../image/earthquake.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px; padding-bottom:5px;'></div>";
+										}
+										else{
+											echo"<div class='col-xl-2 col-md-4'><img src='../image/wildfire.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px; padding-bottom:5px;'></div>";
+										}
+										echo"<div class='offset-1 col-xl-9 col-md-8'>
 												<div class='row'>
-													<p class='col-12' id='tripIdDate'>Crisis Trip Title - " . $row["tripDate"] . "</p>
-													<p class='col-5' id='tripStatus'>Status: " . $row["crisisType"] . "</p>
-													<p class='col-7' id='tripDestination'>Destination: ". $row["location"] ."</p>
-													<p class='col-12' id='tripParticipants'>Number of participants: " . $row["numVolunteer"] . "</p>	
+													<p class='col-3' id='tripID'>Trip ID: " . $row["tripID"] . "</p>
+													<p class='col-6' id='tripIdDate'>Trip Date: " . $row["tripDate"] . "</p>
+													<p class='col-3' id='tripDuration'>Duration: " . $row["minDuration"] . "</p>
+													<p class='col-12' id='description'>Description: ". $row["description"]."</p>
 												</div>							
 											</div>
-										</div>
-									</a>
-								</div>";
+										</button>
+									</div>";
+							}
 						}
-					}
 
 					
 				?>
 			</div>
 			<div class="col-md-2"></div>
-			<div class="col-md-5">
+			<div class="col-md-4">
 				<h2 class="container text-center mb-3 py-4">Applications from the Trip</h2>
 				<div class="container" id="applicationList">
 					<?php
@@ -162,33 +167,47 @@
 						$tripID = json_decode($tripID, false);*/
 
 
-						$getAppAndVolFromTripIDQ = "SELECT * FROM Application JOIN Volunteer ON Application.VolunteerID=Volunteer.VolunteerID WHERE Application.tripID = '$tripID'";
+						$getAppAndVolFromTripIDQ = "SELECT * FROM Application INNER JOIN Volunteer ON Application.VolunteerID=Volunteer.VolunteerID";
 						$result = $conn->query($getAppAndVolFromTripIDQ);
 						if (!$result) {
 							echo $conn->error;
 						} else if ($result->num_rows > 0) {
 							while ($row = $result->fetch_assoc()) {
-								echo '<div class="appSection my-2">
-									<a class="appLink" href="#" value="'.$row["applicationID"].'">
-										<table class="table table-borderless">
-											<tr>
-												<td>Name:</td>
-												<td id="name">'.$row["name"].'</td>
-												<td>Date of Birth:</td>
-												<td id="dateOfBirth">'.$row["dateOfBirth"].'</td>
-											</tr>
-											<tr>
-												<td>Date:</td>
-												<td id="applicationDate">'.$row["applicationDate"].'</td>
-												<td>Gender:</td>
-												<td id="gender">'.$row["gender"].'</td>
-											</tr>
-											<tr>
-												<td colspan="4" class="text-end fw-bold">Status: '.$row["status"].'</td>
-											</tr>
-										</table>
-									</a>
-								</div>';
+								echo '<div class="appSection"  style="display:none;">
+										<input type="hidden" class="applicationTripID" value="'. $row["tripID"] .'">
+											<form method="post" action="manageapplications.php" id="'.$row["applicationID"].'">
+											<a id="appLink"  href="#" onclick="manage('.$row["applicationID"].')">
+												<input type="hidden" value='.$row["applicationID"].' name="applicationID" id="applicationID" />
+												<input id="manageapplication" type="submit" style="display:none;">
+												<table class="table table-borderless">
+													<tr>
+														<td>Name:</td>
+														<td id="name">'.$row["username"].'</td>
+														<td>Date of Birth:</td>';
+														if($row["dateOfBirth"]==0000-00-00){
+															echo'<td id="dateOfBirth">Hidden</td>';
+														}
+														else{
+															echo'<td id="dateOfBirth">'.$row["dateOfBirth"].'</td>';
+														}
+													echo'</tr>
+													<tr>
+														<td>Date:</td>
+														<td id="applicationDate">'.$row["applicationDate"].'</td>
+														<td>Gender:</td>';
+														if($row["gender"]==null){
+															echo'<td id="gender">Hidden</td>';
+														}else{
+															echo'<td id="gender">'.$row["gender"].'</td>';
+														}
+													echo'</tr>
+													<tr>
+														<td colspan="4" class="text-end fw-bold">Status: '.$row["applicationID"].'</td>
+													</tr>
+												</table>
+												</a>
+											</form>
+									</div>';
 							}
 						}
 
@@ -199,7 +218,30 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function changeVolunteerApplication(tripID){
+			var status = document.getElementsByClassName("appSection");
+			var TripID = document.getElementsByClassName("applicationTripID");
+			for (i = 0; i < status.length; i++) {
+				if(TripID[i].value==tripID){
+					status[i].style.display = "block";
+				}
+				else {
+			   	 	status[i].style.display = "none";
+			  	}
+			}
+		}
 
+		function manage(applicationID){
+			document.getElementById(applicationID).submit();
+			// for (i = 0; i < form.length; i++) {
+			// 	if(i==5){
+			// 		form[5].submit();
+			// 	}
+			// }
+		}
+
+	</script>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
