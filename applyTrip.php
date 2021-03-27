@@ -24,7 +24,7 @@
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
 					<li class="nav-item"><a class="nav-link" href="ManageProfile.php">Manage Profile</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">Apply Trip</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">View Application</a></li>
+					<li class="nav-item"><a class="nav-link" href="Volunteer/viewapplicationstatus.php">View Application</a></li>
 					<li class="nav-item"><a class="nav-link" href="index.php">Log Out</a></li>
 				</ul>
 			</div>
@@ -63,7 +63,7 @@
 						while($row = $result->fetch_assoc()){
 							echo "<form class='container' action='PHP/AddApplication.php' method='Post'>
 									<div class='vertical-space'></div>
-									<div class='row g-3 border border-dark mb-3'>";
+									<div class='row g-3 border border-dark mb-3' style='background-color: rgb(226, 220, 205);'>";
 									if($row['crisisType']=='Flood'){
 										echo"<div class='col-xl-2 col-md-4'><img src='image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; 
 											width:150px; 
