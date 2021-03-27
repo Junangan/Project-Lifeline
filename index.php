@@ -72,9 +72,9 @@
 					}
 					else if($result->num_rows > 0){
 						while($row = $result->fetch_assoc()){
-							echo "<div class=''>
+							echo "<div>
 									<div class='vertical-space'></div>
-									<div class='row g-3 border border-dark mb-3'>";
+									<div class='row g-3 border border-dark mb-3' style='background-color: rgb(226, 220, 205);'>";
 									if($row['crisisType']=='Flood'){
 										echo"<div class='col-lg-3 col-md-4'><img src='image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px;'></div>";
 									}
