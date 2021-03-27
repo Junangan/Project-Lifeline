@@ -17,6 +17,11 @@
       height: 700px;
 }
 
+.tripDisplay {
+  background-color: rgb(226, 220, 205);
+  width: 100%;
+}
+
 #Managerbody , #Volunteerbody,  #OrganizeTripBody{
   background-color: #B8FF99;
   background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
