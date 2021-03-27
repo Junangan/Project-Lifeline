@@ -91,7 +91,7 @@
 							while($row = $result->fetch_assoc()){
 								echo "<div>
 										<div class='vertical-space'></div>
-										<button class=' row g-3 border border-dark mb-3' style='background-color: rgb(226, 220, 205);' onclick='changeVolunteerApplication(" . $row["tripID"] . ")'>";
+										<button class='tripLink row g-3 border border-dark mb-3' onclick='changeVolunteerApplication(" . $row["tripID"] . ")'>";
 										if($row['crisisType']=='Flood'){
 											echo"<div class='col-xl-2 col-md-4'><img src='../image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; padding-bottom:5px; width:150px; height:100px;'></div>";
 										}

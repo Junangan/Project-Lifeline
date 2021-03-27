@@ -14,9 +14,12 @@
 			background-color: #B8FF99;
   			background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
 		}
-		a.tripLink {
-			text-decoration: none;
-			color: black;
+		.tripLink {background-color: rgb(226, 220, 205);}
+		.tripLink:hover {
+			box-shadow: 5px 5px grey;
+		}
+		.tripLink:focus {
+			background-color: #a5d1af;
 		}
 		#tripDisplay {
 			background-color: rgb(226, 220, 205);
@@ -107,9 +110,9 @@
 						}
 						else if($result->num_rows > 0){
 							while($row = $result->fetch_assoc()){
-								echo "<div class='tripLink'>
+								echo "<div>
 										<div class='vertical-space'></div>
-										<button class='row g-3 border border-dark mb-3' style='background-color: rgb(226, 220, 205);' onclick='changeApplicationView(". $row["tripID"] .")'>";
+										<button class='tripLink row g-3 border border-dark mb-3' onclick='changeApplicationView(". $row["tripID"] .")'>";
 										if($row['crisisType']=='Flood'){
 											echo"<div class='col-xl-2 col-md-4'><img src='../image/flood.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; padding-bottom:5px; width:150px; height:100px;'></div>";
 										}
