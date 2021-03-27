@@ -1,3 +1,76 @@
+
+<?php 
+session_start();
+//declaration and initialization
+if(isset($_POST['submit'])){
+	$Password = $_POST['password'];
+	$Name = $_POST['realName'];
+	$PhoneNum = $_POST['phoneNumber'];
+	$credentialType = $_POST['CredentialType'];
+	$credentials = $_POST['Credential'];
+	$Birthday = $_POST['Birthday'];
+	$Gender = $_POST['Gender'];
+
+	$SERVERNAME = "localhost";
+	$dbUsername = "root";
+	$dbPassword = "";
+
+	$conn = new mysqli ($SERVERNAME ,$dbUsername ,$dbPassword);
+
+	//checking the sql
+	if($conn->connect_error){
+		die("Some thing error <br>".$connect->connect_error);
+	}
+
+	$conn->select_db("CRS");
+
+
+	$VolunteerName = $_SESSION['Volunteer'];
+	$GetUserQuery = "SELECT * from User WHERE username='$VolunteerName'";
+	$result = $conn->query($GetUserQuery);
+	$row = $result->fetch_assoc();
+	if($Password!= $row['password'] || $Name!= $row['name'] || $PhoneNum!= $row['phone']){
+		$UpdateProfitQuery = "UPDATE User SET password='$Password' , name='$Name' , phone='$PhoneNum' WHERE username='$VolunteerName'";
+		$conn->query($UpdateProfitQuery);
+	}
+
+	$GetVolunteerQuery = "SELECT * from Volunteer WHERE username='$VolunteerName'";
+	$findVolunteerresult = $conn->query($GetVolunteerQuery);
+	$volunteerrow = $findVolunteerresult->fetch_assoc();
+	if($credentialType!= $volunteerrow['credentialType'] || $credentials!= $volunteerrow['credentials']|| $Birthday!= $volunteerrow['dateOfBirth']|| $Gender!= $volunteerrow['gender']){
+		$UpdateProfitQuery = "UPDATE Volunteer SET credentialType='$credentialType' ,credentials='$credentials' ,dateOfBirth='$Birthday' ,gender='$Gender' WHERE username='$VolunteerName'";
+		$conn->query($UpdateProfitQuery);
+	}
+
+
+		$filename = $_FILES["image"]["name"];
+    	$tempname = $_FILES["image"]["tmp_name"];
+    	$path = "image/$VolunteerName/";
+        $folder = "image/$VolunteerName/".$filename;
+        if(is_dir($path)){
+			move_uploaded_file($tempname, $folder); 
+		}
+		else{
+			mkdir("image/$VolunteerName/");
+			move_uploaded_file($tempname, $folder); 
+		}
+
+		$DocumentType = $_POST['DocumentType'];
+		$ExpiryDate = $_POST['ExpiryDate'];
+		$GetVolunteerQuery = "SELECT * from Volunteer WHERE username='$VolunteerName'";
+		$result = $conn->query($GetVolunteerQuery);
+		$row = $result->fetch_assoc();
+		$VolunteerID = $row['VolunteerID'];
+		$AddDocumentQuery = "INSERT INTO Document values(Null,'$filename','$DocumentType','$ExpiryDate','$VolunteerID')";
+		$conn->query($AddDocumentQuery);
+	echo "<script>
+	alert('Change Successfully');
+	</script>";
+
+	$conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -18,7 +91,7 @@
 				<ul class="navbar-nav mr-auto w-100 justify-content-end">
 					<li class="nav-item"><a class="nav-link" href="#">Manage Profile</a></li>
 					<li class="nav-item"><a class="nav-link" href="applyTrip.php">Apply Trip</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">View Application</a></li>
+					<li class="nav-item"><a class="nav-link" href="Volunteer/viewapplicationstatus.php">View Application</a></li>
 					<li class="nav-item"><a class="nav-link" href="index.php">Log Out</a></li>
 				</ul>
 			</div>
@@ -29,10 +102,9 @@
 					<h1>Manage Profile</h1>
 				</div>
 				<div id="manageProfileForm">
-					<form action="PHP/ManageVolunteerProfile.php" method="Post" onsubmit="return Volunteer_Validate()">
+					<form action="" method="Post" onsubmit="return Volunteer_Validate()" enctype="multipart/form-data">
 						<div class="form-row">
 							<?php
-								session_start();
 								$conn = new mysqli ('localhost', 'root', '',"CRS");
 								$VolunteerName = $_SESSION['Volunteer'];
 								$GetUserQuery = "SELECT * from User WHERE username='$VolunteerName'";
