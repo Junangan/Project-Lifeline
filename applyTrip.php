@@ -50,7 +50,7 @@
 
 					$conn->select_db("CRS");
 
-					$getAllTrips = "SELECT * FROM Trip";
+					$getAllTrips = "SELECT * FROM Trip WHERE numVolunteer!=0";
 					$result = $conn->query($getAllTrips);
 					if(!$result){
 						echo "<div class='container'>
