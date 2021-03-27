@@ -6,35 +6,29 @@
 	<link rel="stylesheet" href="../CSS/style.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<style>
-		.vertical-space {height: 25px;}
-		.button-rounded {border-radius: 5px;}
-		#tripDisplay {background-color: rgb(226, 220, 205);}
-		.appSection {
-			border-style: black 1px;
-			background-color: #E2DCCD;
-		}
-
 		body {
 			background-color: #B8FF99;
   			background-image: linear-gradient(to right, #B8FF99,white,#B8FF99);
 		}
-
+		.vertical-space {height: 25px;}
+		.button-rounded {border-radius: 5px;}
+		.appSection {
+			border-style: black 1px;
+			background-color: #E2DCCD;
+		}
 		.appSection:hover {
 			background-color: #ede9de;
 		}
-		a.tripLink {
-			text-decoration: none;
-			color: black;
+		.tripLink {background-color: rgb(226, 220, 205);}
+		.tripLink:hover {
+			box-shadow: 5px 5px grey;
 		}
-		a.tripLink:hover {
-			/*either glow/darken/brighten or slightly pop up*/
+		.tripLink:focus {
+			background-color: #a5d1af;
 		}
 		a#appLink {
 			text-decoration: none;
 			color: black;
-		}
-		aappLink:hover {
-			/*either glow/darken/brighten or slightly pop up*/
 		}
 	</style>
 	<title>Staff Menu</title>
@@ -128,44 +122,6 @@
 				<h2 class="container text-center mb-3 py-4">Applications from the Trip</h2>
 				<div class="container" id="applicationList">
 					<?php
-/*						$volArray = array(
-										$volunteer[] = ["name" => "Adam", "dateOfBirth" => "14/6/1993", "gender" => "male"],
-										$volunteer[] = ["name" => "Joseph", "dateOfBirth" => "14/1/1989", "gender" => "male"]
-									);
-
-						$appArray = array(
-										$application[] =["applicationID" => "app1", "applicationDate" => "6/4/2020", "status" => "REJECTED", "remarks" => "Upload passport picture again"],
-										$application[] =["applicationID" => "app2", "applicationDate" => "14/5/2020", "status" => "ACCEPTED", "remarks" => "All documents accepted"]
-									);
-
-						$i=0;
-						foreach ($appArray as $application) {
-							echo '<div class="appSection my-2">
-									<table class="table table-borderless">
-										<tr>
-											<td>Name:</td>
-											<td id="name">'.$volunteer[$i]["name"].'</td>
-											<td>Date of Birth:</td>
-											<td id="dateOfBirth">'.$volunteer[$i]["dateOfBirth"].'</td>
-										</tr>
-										<tr>
-											<td>Date:</td>
-											<td id="applicationDate">'.$application["applicationDate"].'</td>
-											<td>Gender:</td>
-											<td id="gender">'.$volunteer[$i]["gender"].'</td>
-										</tr>
-										<tr>
-											<td colspan="4" class="text-end fw-bold">Status: '.$application["status"].'</td>
-										</tr>
-									</table>
-								</div>';
-							$i++;
-						}
-*/
-						/*header("Content-Type: application/json; charset=UTF-8");
-						$tripID = $_POST["tripID"];
-						$tripID = json_decode($tripID, false);*/
-
 
 						$getAppAndVolFromTripIDQ = "SELECT * FROM Application INNER JOIN Volunteer ON Application.VolunteerID=Volunteer.VolunteerID";
 						$result = $conn->query($getAppAndVolFromTripIDQ);
@@ -253,41 +209,5 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-	<script>
-		/*create cookie with value tripID*/
-/*		$(".tripLink").click(function(){
-			var tripID = $(this).val();	// current value on the link (tripID)
-			document.cookie = "tripID: "+tripID;
-			location.reload();
-		});*/
-		/*create JSON with value tripID*/
-		$(".tripLink").click(function(){
-			var tripID = $(this).attr("id");	// current id on the link (tripID)
-			alert("tripID: "+tripID);
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-    			if (this.readyState == 4 && this.status == 200) {
-    				// console.log(xhttp.responseText);
-    			}
-    		};
-			xhttp.open('POST','viewapplicationstatus.php', {tripID : tripID});
-			xhttp.send();
-			// location.reload();
-		});
-
-		$(".appLink").click(function(){
-			var appID = $(this).attr("id");
-			alert("appID: "+appID);
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function() {
-    			if (this.readyState == 4 && this.status == 200) {
-    				// console.log(xhttp.responseText);
-    			}
-    		};
-			xhttp.open('POST','viewapplicationstatus.php', {appID : appID}, true);
-			xhttp.send();
-		}
-
-	</script>
 </body>
 </html>
