@@ -72,7 +72,7 @@
 
 	<div class="mb-3">
 		<div class="row  g-3">
-			<div class="offset-1 col-md-4">
+			<div class="offset-1 col-md-5">
 				<h2 class="container text-center mb-3 py-4">Trips Applied by Volunteer</h2>
 				<div class="tripSection">
 
@@ -119,7 +119,7 @@
 										else{
 											echo"<div class='col-xl-2 col-md-4'><img src='../image/wildfire.jpg' alt='tripImage' style='margin-top:5px; padding-right:10px; width:150px; height:100px; padding-bottom:5px;'></div>";
 										}
-										echo"<div class='offset-1 col-xl-9 col-md-8'>
+										echo"<div class='offset-xl-1 col-xl-9 col-md-8'>
 												<div class='row'>
 													<p class='col-3' id='tripID'>Trip ID: " . $row["tripID"] . "</p>
 													<p class='col-6' id='tripIdDate'>Trip Date: " . $row["tripDate"] . "</p>
@@ -134,11 +134,16 @@
 					?>
 				</div>		
 			</div>	
-			<div class="col-md-2"></div>
+			<div class="col-md-1"></div>
 			<div class="col-md-4">
 				<h2 class="text-center mb-3 py-4">View Application Status</h2>
 				<?php
-					$getAllApplication = "SELECT * FROM Application INNER JOIN trip ON application.tripID=Trip.tripID";
+					$VolunteerName = $_SESSION['Volunteer'];
+					$GetVolunteerQuery = "SELECT * from Volunteer WHERE username='$VolunteerName'";
+					$result = $conn->query($GetVolunteerQuery);
+					$row = $result->fetch_assoc();
+					$VolunteerID = $row['VolunteerID'];
+					$getAllApplication = "SELECT * FROM Application INNER JOIN trip ON application.tripID=Trip.tripID WHERE application.VolunteerID='$VolunteerID'";
 					$result = $conn->query($getAllApplication);
 					if($result->num_rows > 0){
 						while($row = $result->fetch_assoc()){
@@ -148,7 +153,7 @@
 										<div class='col-4'>
 											<p>Application ID:</p>
 											<p>Application Date:</p>
-											<p>Trip Name:</p>
+											<p>Trip ID:</p>
 											<p>Destination:</p>
 											<p>Trip Date:</p>
 											<p>Duration:</p>

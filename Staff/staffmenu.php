@@ -56,7 +56,7 @@
 
 	<div class="mb-3">
 		<div class="row g-3">
-			<div class="offset-1 col-md-4">
+			<div class="offset-1 col-md-5">
 				<?php
 					session_start();
 
@@ -123,7 +123,7 @@
 					
 				?>
 			</div>
-			<div class="col-md-2"></div>
+			<div class="col-md-1"></div>
 			<div class="col-md-4">
 				<h2 class="container text-center mb-3 py-4">Applications from the Trip</h2>
 				<div class="container" id="applicationList">
@@ -169,45 +169,56 @@
 
 						$getAppAndVolFromTripIDQ = "SELECT * FROM Application INNER JOIN Volunteer ON Application.VolunteerID=Volunteer.VolunteerID";
 						$result = $conn->query($getAppAndVolFromTripIDQ);
-						if (!$result) {
-							echo $conn->error;
-						} else if ($result->num_rows > 0) {
+						if($result->num_rows <= 0){
+							echo"<div class='appSection container'>
+									<div class='vertical-space'></div>
+									<p class='text-center'>No any Application</p>
+								</div>";
+						}
+						else if ($result->num_rows > 0) {
 							while ($row = $result->fetch_assoc()) {
-								echo '<div class="appSection"  style="display:none;">
-										<input type="hidden" class="applicationTripID" value="'. $row["tripID"] .'">
-											<form method="post" action="manageapplications.php" id="'.$row["applicationID"].'">
-											<a id="appLink"  href="#" onclick="manage('.$row["applicationID"].')">
-												<input type="hidden" value='.$row["applicationID"].' name="applicationID" id="applicationID" />
-												<input id="manageapplication" type="submit" style="display:none;">
-												<table class="table table-borderless">
-													<tr>
-														<td>Name:</td>
-														<td id="name">'.$row["username"].'</td>
-														<td>Date of Birth:</td>';
-														if($row["dateOfBirth"]==0000-00-00){
-															echo'<td id="dateOfBirth">Hidden</td>';
-														}
-														else{
-															echo'<td id="dateOfBirth">'.$row["dateOfBirth"].'</td>';
-														}
-													echo'</tr>
-													<tr>
-														<td>Date:</td>
-														<td id="applicationDate">'.$row["applicationDate"].'</td>
-														<td>Gender:</td>';
-														if($row["gender"]==null){
-															echo'<td id="gender">Hidden</td>';
-														}else{
-															echo'<td id="gender">'.$row["gender"].'</td>';
-														}
-													echo'</tr>
-													<tr>
-														<td colspan="4" class="text-end fw-bold">Status: '.$row["applicationID"].'</td>
-													</tr>
-												</table>
-												</a>
-											</form>
-									</div>';
+								$tripID=$row['tripID'];
+								$getApp= "SELECT * FROM Application WHERE tripID='$tripID'";
+								$Appresult = $conn->query($getApp);
+								if(!$result){
+								}
+								else{
+									echo '<div class="appSection"  style="display:none;">
+											<input type="hidden" class="applicationTripID" value="'. $row["tripID"] .'">
+												<form method="post" action="manageapplications.php" id="'.$row["applicationID"].'">
+												<a id="appLink"  href="#" onclick="manage('.$row["applicationID"].')">
+													<input type="hidden" value='.$row["applicationID"].' name="applicationID" id="applicationID" />
+													<input id="manageapplication" type="submit" style="display:none;">
+													<table class="table table-borderless">
+														<tr>
+															<td>Apply Name:</td>
+															<td id="name">'.$row["username"].'</td>
+															<td>Date of Birth:</td>';
+															if($row["dateOfBirth"]==0000-00-00){
+																echo'<td id="dateOfBirth">Hidden</td>';
+															}
+															else{
+																echo'<td id="dateOfBirth">'.$row["dateOfBirth"].'</td>';
+															}
+														echo'</tr>
+														<tr>
+															<td>Date:</td>
+															<td id="applicationDate">'.$row["applicationDate"].'</td>
+															<td>Gender:</td>';
+															if($row["gender"]==null){
+																echo'<td id="gender">Hidden</td>';
+															}else{
+																echo'<td id="gender">'.$row["gender"].'</td>';
+															}
+														echo'</tr>
+														<tr>
+															<td colspan="4" class="text-end fw-bold">Status: '.$row["status"].'</td>
+														</tr>
+													</table>
+													</a>
+												</form>
+										</div>';
+									}
 							}
 						}
 
@@ -234,11 +245,6 @@
 
 		function manage(applicationID){
 			document.getElementById(applicationID).submit();
-			// for (i = 0; i < form.length; i++) {
-			// 	if(i==5){
-			// 		form[5].submit();
-			// 	}
-			// }
 		}
 
 	</script>
