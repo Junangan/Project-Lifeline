@@ -86,7 +86,7 @@
 												</p>
 												<p class='col-4' id='tripDestination'>Destination: ". $row["location"] ."</p>
 												<p class='col-4' id='Requirement'>Requirement: ". $row["requirements"] ."</p>
-												<p class='col-4' id='tripParticipants'>Participant needed: " . $row["numVolunteer"] . "</p>
+												<p class='col-4' id='tripParticipants'>Volunteer needed: " . $row["numVolunteer"] . "</p>
 												<p class='col-4' id='tripDuration'>Duration: " . $row["minDuration"] . "</p>
 												<input class='col-3 btn btn-primary ' type='submit' id='apply trip' value='Apply this trip' style='height:35px; margin-top:-5px;'>	
 											</div>							

@@ -148,7 +148,10 @@
 					$VolunteerID = $row['VolunteerID'];
 					$getAllApplication = "SELECT * FROM Application INNER JOIN trip ON application.tripID=Trip.tripID WHERE application.VolunteerID='$VolunteerID'";
 					$result = $conn->query($getAllApplication);
-					if($result->num_rows > 0){
+					if(!$result || $result->num_rows < 0){
+
+					}
+					else if($result->num_rows > 0){
 						while($row = $result->fetch_assoc()){
 							echo "<div class='applicationDetails' style='display:none;'>
 									<input type='hidden' class='applicationTripID' value='". $row["tripID"] ."'>

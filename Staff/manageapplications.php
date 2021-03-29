@@ -66,6 +66,7 @@
       echo'<form action="../PHP/ManageApplication.php" method="Post">
           <div class="row">
             <div class="col-6">
+              <input type="hidden" name="tripID" value="'.$row["tripID"].'">
               <p class="pb-5">Application ID: '.$row["applicationID"].'</p>
               <input type="hidden" value="'.$row["applicationID"].'" name="applicationID" id="applicationID">
               <p class="pb-5">Application Date: '.$row["applicationDate"].'</p>
